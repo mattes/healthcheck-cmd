@@ -26,6 +26,10 @@ func init() {
 }
 
 func main() {
+	if commandFlag == "" {
+		log.Fatal("missing -command")
+	}
+
 	log.Printf("Start listening on %v", listenFlag)
 	http.HandleFunc(pathFlag, healthcheck(commandFlag, successCodeFlag, errorCodeFlag))
 	http.ListenAndServe(listenFlag, nil)
